@@ -1,0 +1,260 @@
+main {
+    display: flex;
+    width: 90vw;
+    margin: 0 auto;
+}
+
+aside {
+    width: 20%;
+    height: 100%;
+}
+
+aside ul {
+    list-style-type: none;
+}
+
+aside ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 70%;
+    height: 100px;
+}
+
+/* Main page */
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+}
+
+.main-news-item {
+    width: 20%;
+    text-align: center;
+}
+/* End main page */
+
+/* User Profile page */
+.full-page .content {
+    width: 100%;
+}
+
+.user-profile-info {
+    display: flex;
+    width: 100%;
+    padding: 1%;
+    box-sizing: border-box;
+}
+
+.profile-user-photo {
+    display: flex;
+    width: 60%;
+}
+
+.profile-user-photo-container {
+    border-radius: 100%;
+    width: 180px;
+    height: 180px;
+    margin: 1% 0;
+    border: 3px solid lightgray;
+    position: relative;
+}
+
+.profile-user-photo-hover {
+    display: none;
+    border-radius: 100%;
+}
+
+.profile-user-photo-container:hover .profile-user-photo-hover {
+    display: block;
+    width: 180px;
+    height: 180px;
+    position: absolute;
+    top: 0;
+    background-color: rgba(0, 0, 0, .5);
+    cursor: pointer;
+}
+
+.profile-user-photo .profile-user-photo-image {
+    display: block;
+    width: 180px;
+    height: 180px;
+    border-radius: 100%;
+}
+
+.profile-user-main-info {
+    width: 100%;
+    padding: 1% 3%;
+}
+
+.profile-user-name {
+    width: 100%;
+}
+
+.profile-user-additional {
+    width: 40%;
+}
+
+.profile-user-additional>div {
+    padding: 2%;
+}
+
+.profile-user-social {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.profile-user-social span {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin-right: 3%;
+}
+
+.profile-user-menu {
+    display: flex;
+    width: 100%;
+}
+
+.profile-user-menu-item {
+    width: 25%;
+    padding: 1.5% 3%;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+}
+
+.profile-user-content {
+    width: 100%;
+    padding: 5% 2%;
+}
+/* end user profile page */
+
+/*Place page*/
+.place-header, .place-map, .place-description, .place-events {
+    width: 100%;
+}
+
+.place-header {
+    height: 60vh;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.place-info {
+    width: 20%;
+    position: absolute;
+    top: 20%;
+    left: 10%;
+}
+
+.place-info span {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 2% 0;
+}
+
+.place-time-container {
+    margin: 5% 0 0;
+    padding: 5% 0 0;
+}
+
+.place-name {
+    width: 100%;
+    margin: 3% 0;
+    text-align: center;
+}
+
+.place-address-phone-container {
+    margin: 10% 0 5%;
+}
+
+.place-photos {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, .7);
+}
+
+.place-photo-shadow {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.place-photo-container {
+    width: 8%;
+    position: relative;
+}
+
+.place-photo-container.active {
+    border: 2px solid gray;
+}
+
+.place-photo-container:hover>.place-photo-shadow {
+    display: block;
+    cursor: pointer;
+}
+
+.place-photo-container img {
+    width: 100%;
+    height: 100%;
+}
+
+.place-description {
+    padding: 40px;
+}
+
+.place-description h4 {
+    margin-bottom: 20px;
+}
+
+.place-events {
+    display: flex;
+    justify-content: center;
+}
+
+.place-event {
+    width: 20%;
+    margin: 20px 40px;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.place-event-name {
+    margin-bottom: 20px;
+}
+
+.place-event-image {
+    width: 100%;
+}
+
+.place-event-description {
+    margin: 40px 0;
+}
+
+.place-event .more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 30px;
+    margin: 0 auto;
+}
+/*End place page*/
+
+/*News-one page*/
+.news-title {
+    width: 100%;
+}
+/*End news-one page*/

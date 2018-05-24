@@ -1,0 +1,48 @@
+/* Newspaper theme header */
+
+#search {
+  display: block;
+  border: 1px solid black;
+  box-sizing: border-box;
+  padding: 6px 19px 6px 19px;
+  margin: 7px 0;
+  height: 28px;
+  line-height: 16px;
+  width: 100%;
+  border-radius: 14px;
+  -o-transition: background-color 0.05s, color 0.05s;
+  transition: background-color 0.05s, color 0.05s;
+  background: #ffffff url("..\..\images\icons\search.svg") left 8px no-repeat;
+  color: #000000;
+}
+
+/* Newspaper theme header */
+
+/*Place page*/
+
+.place-info {
+  background-color: white;
+}
+
+.place-map img {
+  width: 100%;
+}
+
+.place-event {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.place-event .more {
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+/*End place page*/
+
+div,
+header,
+main,
+aside {
+  border: 1px solid black;
+}
