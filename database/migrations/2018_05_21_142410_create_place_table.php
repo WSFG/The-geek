@@ -18,14 +18,14 @@ class CreatePlaceTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->text('text');
-            $table->text('image');
             $table->string('phone');
             $table->string('working_time');
             $table->string('address');
             $table->decimal('latitude', 10, 7);
             $table->decimal('longitude', 10, 7);
+            $table->integer('rating')->default(0);
             $table->bigInteger('type_of_pace_id')->unsigned()->nullable();
-            $table->foreign('type_of_pace_id')->references('id')->on('type_of_pace');
+            $table->foreign('type_of_pace_id')->references('id')->on('type_of_pace')->onDelete('cascade');
             $table->timestamps();
         });
     }

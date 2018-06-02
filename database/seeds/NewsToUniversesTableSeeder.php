@@ -13,7 +13,7 @@ class NewsToUniversesTableSeeder extends Seeder
     {
         DB::table('news_to_universe')->insert([
             'news_id' => '1',
-            'universe_id' => '1',
+            'universe_id' => '2',
         ]);
         DB::table('news_to_universe')->insert([
             'news_id' => '2',
@@ -21,11 +21,16 @@ class NewsToUniversesTableSeeder extends Seeder
         ]);
         DB::table('news_to_universe')->insert([
             'news_id' => '3',
-            'universe_id' => '1',
+            'universe_id' => '2',
         ]);
         DB::table('news_to_universe')->insert([
             'news_id' => '4',
             'universe_id' => '1',
+        ]);
+
+        DB::table('news_to_universe')->insert([
+            'news_id' => '4',
+            'universe_id' => '2',
         ]);
     }
 }

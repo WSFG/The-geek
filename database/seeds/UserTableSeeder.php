@@ -18,11 +18,16 @@ class UserTableSeeder extends Seeder
             'email' => 'kolesnikov.roma.1999@mail.ru',
             'phone_number' => '+375257337987',
             'password' => bcrypt('1803y2607a'),
-            'user_main_photo' => '/images/icons/user.svg',
-            'is_confirmed' => false,
+            'email_token' => base64_encode('kolesnikov.roma.1999@mail.ru'),
             'last_login' => \Carbon\Carbon::now(),
-            'online' => true,
-            'type_of_user_id' => '2',
+            'type_of_user_id' => 2,
+        ]);
+
+        DB::table('user_to_image')->insert([
+           'is_main' => true,
+            'user_id' => 1,
+            'image_id' => 4,
+            'relationship_id' => 1
         ]);
     }
 }

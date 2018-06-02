@@ -2,12 +2,13 @@
 
 @section('content')
 <main class="full-page">
+    @include('aside')
     <section class="content">
         <!--TODO: Страница пользователя-->
         <div class="user-profile-info">
             <div class="profile-user-photo">
                 <div class="profile-user-photo-container">
-                    <img class="profile-user-photo-image" src="{{ url($currentUser->user_main_photo) }}" alt="{{ $currentUser->name . " " . $currentUser->surname }}" />
+                    <img class="profile-user-photo-image" src="" alt="{{ $currentUser->name . " " . $currentUser->surname }}" />
                     <div class="profile-user-photo-hover"></div>
                 </div>
                 <div class="profile-user-main-info">

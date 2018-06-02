@@ -4,16 +4,19 @@
   display: block;
   border: 1px solid black;
   box-sizing: border-box;
-  padding: 6px 19px 6px 19px;
+  padding: 6px 35px 6px 19px;
   margin: 7px 0;
   height: 28px;
   line-height: 16px;
   width: 100%;
   border-radius: 14px;
-  -o-transition: background-color 0.05s, color 0.05s;
-  transition: background-color 0.05s, color 0.05s;
-  background: #ffffff url("..\..\images\icons\search.svg") left 8px no-repeat;
+  background-image: url("../../images/Texture-271.jpg");
   color: #000000;
+}
+
+#search::placeholder{
+  color: #333030;
+  font-size: 15px;
 }
 
 /* Newspaper theme header */
@@ -40,9 +43,8 @@
 
 /*End place page*/
 
-div,
-header,
-main,
-aside {
-  border: 1px solid black;
-}
+
+
+/*
+WRITE UNDER THIS COMMENT
+ */

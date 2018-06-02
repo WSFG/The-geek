@@ -16,6 +16,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /*User routes*/
 Auth::routes();
+Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 Route::get('logout', 'HomeController@logout');
 Route::get('/user/{id}', 'UserController@profile');
 

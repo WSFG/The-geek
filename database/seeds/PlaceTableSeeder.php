@@ -15,7 +15,6 @@ class PlaceTableSeeder extends Seeder
             'name' => 'Time to be a hero',
             'description' => 'Магазин комиксов',
             'text' => 'Магазин комиксов',
-            'image' => '',
             'phone' => '8 029 666-74-74',
             'working_time' => 'Пн-Вс: 9:00 - 22:00',
             'address' => 'Ул. Веры Хоружей 5',

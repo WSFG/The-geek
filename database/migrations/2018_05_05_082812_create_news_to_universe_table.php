@@ -16,8 +16,8 @@ class CreateNewsToUniverseTable extends Migration
         Schema::create('news_to_universe', function (Blueprint $table) {
             $table->bigInteger('news_id')->unsigned();
             $table->bigInteger('universe_id')->unsigned();
-            $table->foreign('news_id')->references('id')->on('news');
-            $table->foreign('universe_id')->references('id')->on('universes');
+            $table->foreign('news_id')->references('id')->on('news')->onDelete('cascade');
+            $table->foreign('universe_id')->references('id')->on('universes')->onDelete('cascade');
         });
     }
 

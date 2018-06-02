@@ -21,14 +21,14 @@ class CreateUsersTable extends Migration
             $table->string('email', '45')->unique();
             $table->string('phone_number', '20')->unique()->nullable();
             $table->string('password');
-            $table->text('user_main_photo');
             $table->boolean('is_confirmed')->default(false);
-            $table->dateTime('last_login');
-            $table->boolean('online');
+            $table->string('email_token')->nullable();
+            $table->dateTime('last_login')->nullable();
+            $table->boolean('online')->default(false);
             $table->bigInteger('type_of_user_id')->unsigned()->default(1);
             $table->foreign('type_of_user_id')->references('id')->on('type_of_user');
             $table->bigInteger('user_info_id')->unsigned()->nullable();
-            $table->foreign('user_info_id')->references('id')->on('user_info');
+            $table->foreign('user_info_id')->references('id')->on('user_info')->onDelete('cascade');
             $table->timestamps();
             $table->rememberToken();
         });

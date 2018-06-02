@@ -16,4 +16,14 @@ class Place extends Model
     {
         return $this->hasOne('PlaceType', 'type_of_pace_id');
     }
+
+    public function images()
+    {
+        return $this->belongsToMany('App\Image', 'news_to_image')->withPivot('is_main');
+    }
+
+    public function getMainImage()
+    {
+        return $this->images()->wherePivot('is_main', '=', true);
+    }
 }
