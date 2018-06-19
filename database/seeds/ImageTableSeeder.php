@@ -11,23 +11,27 @@ class ImageTableSeeder extends Seeder
      */
     public function run()
     {
+        //Default images
+        DB::table('image')->insert([
+            'path' => 'thumb/news/default.jpg',
+        ]);
         //News images
         DB::table('image')->insert([
-            'path' => 'thumb/news/13rw_203_04361r-380x215.jpg',
+            'path' => 'thumb/news/1/13rw_203_04361r-380x215.jpg',
         ]);
         DB::table('image')->insert([
-            'path' => 'thumb/news/39814594522_17f9fbbe81_k-min-380x215.jpg',
+            'path' => 'thumb/news/2/39814594522_17f9fbbe81_k-min-380x215.jpg',
         ]);
         DB::table('image')->insert([
-            'path' => 'thumb/news/Detroit-Become-Human.jpg',
+            'path' => 'thumb/news/3/Detroit-Become-Human.jpg',
         ]);
         DB::table('image')->insert([
-            'path' => 'thumb/news/Devgamm18-59-380x215.jpg',
+            'path' => 'thumb/news/4/Devgamm18-59-380x215.jpg',
         ]);
 
         //Users image
         DB::table('image')->insert([
-            'path' => 'thumb/users/rBQ9htheiRQ.jpg',
+            'path' => 'thumb/users/1/rBQ9htheiRQ.jpg',
         ]);
     }
 }

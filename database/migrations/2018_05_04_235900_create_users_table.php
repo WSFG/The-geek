@@ -24,7 +24,6 @@ class CreateUsersTable extends Migration
             $table->boolean('is_confirmed')->default(false);
             $table->string('email_token')->nullable();
             $table->dateTime('last_login')->nullable();
-            $table->boolean('online')->default(false);
             $table->bigInteger('type_of_user_id')->unsigned()->default(1);
             $table->foreign('type_of_user_id')->references('id')->on('type_of_user');
             $table->bigInteger('user_info_id')->unsigned()->nullable();

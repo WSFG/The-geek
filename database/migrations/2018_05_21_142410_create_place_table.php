@@ -23,7 +23,6 @@ class CreatePlaceTable extends Migration
             $table->string('address');
             $table->decimal('latitude', 10, 7);
             $table->decimal('longitude', 10, 7);
-            $table->integer('rating')->default(0);
             $table->bigInteger('type_of_pace_id')->unsigned()->nullable();
             $table->foreign('type_of_pace_id')->references('id')->on('type_of_pace')->onDelete('cascade');
             $table->timestamps();

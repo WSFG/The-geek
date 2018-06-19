@@ -2,22 +2,25 @@
 
 @section('content')
 <main>
-    @yield('aside')
+    @include('aside')
     <section class="content">
+        <fieldset>
+            <legend>НОВОСТИ</legend>
         <section class="news">
-            <h2>НОВОСТИ</h2>
             @foreach($news as $item)
                 <section class="main-news-item">
-                    {{ strval($item->getMainImage) }}
-{{--                    <img src="{{ url($item->getMainImage()->path) }}">--}}
-                    <h4>{{ $item->title }}</h4>
-                    <p>{{ $item->description }}</p>
+                    <a href="{{ url('/news/' . $item->id) }}">
+                        <img src="{{ url($item->getMainImage->path) }}">
+                        <h4>{{ $item->title }}</h4>
+                        <p>{{ $item->description }}</p>
+                    </a>
                     <div class="likes">
 
                     </div>
                 </section>
             @endforeach
         </section>
+        </fieldset>
         <section class="right-main-section">
             <h2>РЕКОМЕНДАЦИИ</h2>
             <article class="right-main-item">

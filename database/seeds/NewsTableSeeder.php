@@ -15,13 +15,6 @@ class NewsTableSeeder extends Seeder
             'title' => '«13 ПРИЧИН ПОЧЕМУ». СТОИТ ЛИ СМОТРЕТЬ 2 СЕЗОН?',
             'description' => '«13 причин почему». Стоит ли смотреть 2 сезон?',
             'text' => '
-                    <div class="main_news_information">
-                    <img src="images/news/news_one/13rw_203_02742r.jpg" class="news_page_main_image leftimg">
-                    <p class="news_page_description">Первый сезон «13 причин почему» был фактически законченным произведением, оставив без ответа лишь некоторые вопросы касательно исхода истории.
-                        Второй мог подарить зрителям совершенно новую историю. Но авторы решили сфокусироваться на том, что есть, попытавшись развить идеи оригинала.
-                        Поэтому в отношении новых серий возникало много опасений, ведь основная сюжетная арка была фактически закрыта. <br>
-                        Мы собрали ключевые «за» и «против», чтобы ответить на вопрос, стоит ли смотреть продолжение.</p>
-                    </div>
                     <h4>Ожидаемое продолжение истории</h4>
                     <h5>За:</h5>
                     <p>Первый сезон «13 причин почему» был насыщенным, честным и необычным.
@@ -34,9 +27,9 @@ class NewsTableSeeder extends Seeder
                         Более того, в контексте событий прошлого сезона новые подробности, всплывающие в ходе судебного процесса по делу Ханны, настолько шокируют, что едва ли не затирают те образы, которые успели сформироваться у зрителя.
                         Внезапно открываются нюансы, о которых до сих пор не было сказано ни слова, и они меняют общую картину порой радикально.</p>
                     <figure>
-                        <img src="images/news/news_one/13_reasons_why_s2_1-380x215.jpg">
-                        <img src="images/news/news_one/13_reasons_why_s2_2-380x215.jpg">
-                        <img src="images/news/news_one/13_reasons_why_s2_3-380x215.jpg">
+                        <img src="http://localhost/Geek/public/thumb/news/1/13_reasons_why_s2_1-380x215.jpg">
+                        <img src="http://localhost/Geek/public/thumb/news/1/13_reasons_why_s2_2-380x215.jpg">
+                        <img src="http://localhost/Geek/public/thumb/news/1/13_reasons_why_s2_3-380x215.jpg">
                     </figure>
                     <h4>Злободневные темы</h4>
                     <h5>За:</h5>
@@ -50,9 +43,9 @@ class NewsTableSeeder extends Seeder
                         Да и некоторые начинания остаются не раскрытыми.
                         Признаться, помня о предыдущей откровенности сериала, некоторые моменты я смотрел с замиранием, но в итоге часто оказывался разочарован.</p>
                     <figure>
-                        <img src="images/news/news_one/13_reasons_why_s2_4-380x215.jpg">
-                        <img src="images/news/news_one/13_reasons_why_s2_5-380x215.jpg">
-                        <img src="images/news/news_one/13_reasons_why_s2_6-380x215.jpg">
+                        <img src="http://localhost/Geek/public/thumb/news/1/13_reasons_why_s2_4-380x215.jpg">
+                        <img src="http://localhost/Geek/public/thumb/news/1/13_reasons_why_s2_5-380x215.jpg">
+                        <img src="http://localhost/Geek/public/thumb/news/1/13_reasons_why_s2_6-380x215.jpg">
                     </figure>
                     <h4>Редкий и притягательный сеттинг</h4>
                     <h5>За:</h5>
@@ -70,47 +63,43 @@ class NewsTableSeeder extends Seeder
                         Ведь если подобные истории Вам не интересны, то нет и смысла пытаться насильно втянуться в происходящее.
                         В конце концов, «13 причин почему» не переворачивает мир и не дает гениального ответа на вопрос о том, как решить все эти проблемы, с которыми сталкиваются тинейджеры.</p>
                     <br>
-                    <center><img src="images/news/news_one/13rw_203_04361r-1.jpg"></center>
+                    <center><img src="http://localhost/Geek/public/thumb/news/1/13rw_203_04361r-1.jpg"></center>
             ',
+            'image_id' => 2,
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
         ]);
-        DB::table('news_to_image')->insert([
+        DB::table('comment_to_news')->insert([
             'news_id' => 1,
-            'image_id' => 1,
+            'comment_id' => 1,
+        ]);
+        DB::table('comment_to_news')->insert([
+            'news_id' => 1,
+            'comment_id' => 2,
         ]);
         DB::table('news')->insert([
             'title' => 'Персонажи God of War. В игре и в мифологии',
             'description' => 'Рассказываем о главных персонажах God of War: кто они в игре и что представляют из себя в мифологии.',
             'text' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            'image_id' => 3,
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
-        ]);
-        DB::table('news_to_image')->insert([
-            'news_id' => 2,
-            'image_id' => 2,
         ]);
         DB::table('news')->insert([
             'title' => 'Detroit: Become Human — первые оценки и цитаты из рецензий',
             'description' => '«Венец творения Quantic Dream»: Первые оценки Detroit: Become Human.',
             'text' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            'image_id' => 4,
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
-        ]);
-        DB::table('news_to_image')->insert([
-            'news_id' => 3,
-            'image_id' => 3,
         ]);
         DB::table('news')->insert([
             'title' => 'DevGAMM Moscow 2018',
             'description' => 'Фотоотчет с конференции игровых разработчиков DevGAMM 2018.',
             'text' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            'image_id' => 5,
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
-        ]);
-        DB::table('news_to_image')->insert([
-            'news_id' => 4,
-            'image_id' => 4,
         ]);
     }
 }

@@ -11,6 +11,10 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('user_info')->insert([
+            'country_id' => 1,
+        ]);
+
         DB::table('users')->insert([
             'name' => 'Рома',
             'surname' => 'Колесников',
@@ -21,12 +25,13 @@ class UserTableSeeder extends Seeder
             'email_token' => base64_encode('kolesnikov.roma.1999@mail.ru'),
             'last_login' => \Carbon\Carbon::now(),
             'type_of_user_id' => 2,
+            'user_info_id' => 1,
         ]);
 
         DB::table('user_to_image')->insert([
-           'is_main' => true,
+            'is_main' => true,
             'user_id' => 1,
-            'image_id' => 4,
+            'image_id' => 6,
             'relationship_id' => 1
         ]);
     }

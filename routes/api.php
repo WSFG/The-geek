@@ -16,3 +16,28 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/search', [
+    'as' => 'api.search',
+    'uses' => 'SearchController@index'
+]);
+
+Route::get('news', [
+    'as' => 'api.admin.news',
+    'uses' => 'NewsController@getAllNews'
+]);
+
+Route::get('places', [
+    'as' => 'api.admin.places',
+    'uses' => 'PlaceController@getAllPlaces'
+]);
+
+Route::get('statistic/users/count', [
+    'as' => 'api.admin.statistic',
+    'uses' => 'AdminController@countUserStatistic'
+]);
+
+Route::get('statistic/users/countries', [
+    'as' => 'api.admin.statistic',
+    'uses' => 'AdminController@countryUserStatistic'
+]);

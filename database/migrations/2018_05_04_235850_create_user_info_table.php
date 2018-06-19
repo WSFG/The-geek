@@ -15,13 +15,14 @@ class CreateUserInfoTable extends Migration
     {
         Schema::create('user_info', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('country', '45')->nullable();
             $table->string('city', '45')->nullable();
             $table->string('skype', '45')->nullable();
             $table->string('vk_id', '45')->nullable();
             $table->string('instagram_id', '45')->nullable();
             $table->string('facebook_id', '45')->nullable();
             $table->string('twitter_id', '45')->nullable();
+            $table->bigInteger('country_id')->nullable();
+            $table->foreign('country_id')->references('id')->on('countries');
         });
     }
 

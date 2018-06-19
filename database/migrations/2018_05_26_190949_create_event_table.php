@@ -20,7 +20,6 @@ class CreateEventTable extends Migration
             $table->text('text');
             $table->dateTime('date_of_start');
             $table->dateTime('date_of_end');
-            $table->integer('rating')->default(0);
             $table->timestamps();
         });
     }

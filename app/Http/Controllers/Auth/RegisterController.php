@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Activity;
 use App\Image;
 use App\User;
 use App\Http\Controllers\Controller;
+use App\UserInfo;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -32,7 +34,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -58,7 +60,7 @@ class RegisterController extends Controller
             'birthday' => 'required|date',
             'email' => 'required|string|email|max:255|unique:users',
             'phone_number' => 'required|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|between:6,255|confirmed',
         ]);
     }
 
@@ -70,21 +72,42 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $image = Image::create([
-            'path' => Image::setMainPhoto($data['user_main_photo'], 'users'),
-        ]);
+        $this->validator($data)->validate();
+
+        $userInfoId = UserInfo::create([
+            'country' => $data['country'],
+            'city' => $data['city'],
+            'skype' => $data['skype'],
+            'vk_id' => $data['vk_id'],
+            'instagram_id' => $data['instagram_id'],
+            'facebook_id' => $data['facebook_id'],
+            'twitter_id' => $data['twitter_id'],
+        ])->id;
 
         $user = User::create([
+            'email' => $data['email'],
+            'email_token' => base64_encode($data['email']),
+            'password' => Hash::make($data['password']),
             'name' => $data['name'],
             'surname' => $data['surname'],
-            'birthday' => $data['birthday'],
-            'email' => $data['email'],
             'phone_number' => $data['phone_number'],
-            'password' => Hash::make($data['password']),
-            'email_token' => base64_encode($data['email'])
+            'birthday' => $data['birthday'],
+            'user_info_id' => $userInfoId
+        ]);
+
+        $image = Image::create([
+            'path' => Image::setMainPhoto($data['user_main_photo'], 'users', $user->id),
         ]);
 
         $user->images()->attach($image->id, array('is_main' => 1, 'relationship_id' => 1));
+
+        Activity::create([
+            'text' => 'Регистрация',
+            'user_id' => $user->id,
+            'type_id' => '1',
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),
+        ]);
 
         return $user;
     }

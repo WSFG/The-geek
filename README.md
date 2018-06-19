@@ -7,6 +7,7 @@ DB_DATABASE=НАЗВАНИЕ_БД
 DB_USERNAME=ИМЯ_ПОЛЬЗОВАТЕЛЯ
 DB_PASSWORD=ПАРОЛЬ
 2. composer update
-3. php artisan migrate
-4. php artisan db:seed
-5. npm install
+3. npm install
+4. php artisan migrate
+5. php artisan db:seed
+6. php artisan schedule:run >>/nul 2>&1

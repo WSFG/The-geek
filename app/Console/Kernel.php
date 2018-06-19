@@ -2,8 +2,11 @@
 
 namespace App\Console;
 
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\User;
+use Illuminate\Support\Facades\DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +16,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+//        \App\Console\Commands\Inspire::class,
     ];
 
     /**
@@ -24,8 +27,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->call(function () {
+            DB::table('user_statistic')->insert([
+                'date' => Carbon::now(),
+                'all_count' => count(User::all()),
+                'verified_count' => count(User::all()->where('is_confirmed', '=', true)),
+                'active_count' => User::activeCount(),
+                'not_active_count' => User::notActiveCount(),
+            ]);
+        })->daily();
     }
 
     /**

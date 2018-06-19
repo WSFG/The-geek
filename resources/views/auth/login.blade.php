@@ -44,14 +44,18 @@
                         <button type="submit" class="btn btn-primary">
                             {{ __('Login') }}
                         </button>
-
-                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
-                        </a>
+                        <div>
+                            <a style="display: inline-block; width: 50%" class="open-modal btn btn-link" data-modal="#reset" href="{{ route('password.request') }}">
+                                {{ __('Forgot Your Password?') }}
+                            </a>
+                            <a style="display: inline-block; width: 50%" class="open-modal btn btn-link" data-modal="#register" href="{{ route('register') }}">
+                                {{ __('Not yet registered?') }}
+                            </a>
+                        </div>
                     </div>
                 </div>
             </form>
         </div>
-        <a class='btn close-modal' data-modal="#login" href="#">X</a>
     </div>
+    <a class='btn close-modal' data-modal="#login" href="#">X</a>
 </div>

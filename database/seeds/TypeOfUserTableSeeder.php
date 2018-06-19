@@ -15,13 +15,13 @@ class TypeOfUserTableSeeder extends Seeder
             'name' => 'user',
         ]);
         DB::table('type_of_user')->insert([
-            'name' => 'admin',
-        ]);
-        DB::table('type_of_user')->insert([
             'name' => 'editor',
         ]);
         DB::table('type_of_user')->insert([
             'name' => 'moderator',
+        ]);
+        DB::table('type_of_user')->insert([
+            'name' => 'admin',
         ]);
     }
 }

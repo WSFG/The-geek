@@ -2,54 +2,59 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\News;
 use App\Image;
+use App\Universe;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class NewsController extends Controller
 {
-    protected function validator(array $data)
+    public function index($id)
     {
-        return Validator::make($data, [
-            'title' => 'required|string|max:45',
-            'description' => 'required|string',
-            'text' => 'required|string',
-            'image' => 'required'
-        ]);
+        return view('news.show', ['news' => News::find($id), 'user' => Auth::user()]);
     }
 
-    public function newsCreate(array $data)
+    public function addComment(Request $data)
     {
-        $this->validator($data)->validate();
-
-        Image::create([
-            'path' => Image::setMainPhoto($data['news_photo'], 'news'),
+        $comment = Comment::create([
+            'user_id' => $data->input("user_id"),
+            'text' => $data->input("text"),
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now()
         ]);
 
-        return News::create([
-            'title' => $data['tile'],
-            'description' => $data['description'],
-            'text' => $data['text'],
-        ]);
+        $comment->news()->attach($data->input("news_id"));
+
+        return json_encode(array(
+            'url' => url('user/' . $comment->user_id),
+            'img' => url($comment->user->getMainImage()->path),
+            'name' => $comment->user->name . ' ' . $comment->user->surname,
+            'text' => $comment->text
+        ));
     }
 
-    public function newsEdit($id, array $data)
+    public function getAllNews()
     {
-        $this->validator($data)->validate();
-
-        $news = News::find($id);
-
-        if ($news) {
-            $image = $news->getMainImage();
-            Image::removeOldPhoto($image->path, 'news');
-            $image->path = Image::setMainPhoto($data['news_photo'], 'news');
-
-            $news->title = $data['title'];
-            $news->description = $data['description'];
-            $news->text = $data['text'];
-
-            $news->save();
+        $result = array();
+        $news = News::all();
+        foreach ($news as $item) {
+            array_push($result, array(
+                'id' => $item->id,
+                'title' => $item->title,
+                'description' => $item->description,
+                'text' => $item->text,
+                'image' => $item->getMainImage,
+                'universes' => $item->universes,
+                'writers' => $item->writers(),
+                'likes' => $item->likes(),
+                'dislikes' => $item->dislikes(),
+                'comments' => $item->comments,
+            ));
         }
+        return $result;
     }
 }

@@ -13,4 +13,29 @@ class PlaceController extends Controller
     {
         return view('places.show', ['place' => Place::findById($id), 'user' => Auth::user()]);
     }
+
+    public function getAllPlaces()
+    {
+        $result = array();
+        $places = Place::all();
+        foreach ($places as $place) {
+            array_push($result, array(
+                'id' => $place->id,
+                'name' => $place->name,
+                'description' => $place->description,
+                'text' => $place->text,
+                'phone' => $place->phone,
+                'working_time' => $place->working_time,
+                'address' => $place->address,
+                'latitude' => $place->latitude,
+                'longitude' => $place->longitude,
+                'image' => $place->getMainImage(),
+                'place_type' => $place->placeType,
+                'likes' => $place->likes(),
+                'dislikes' => $place->dislikes(),
+//                'comments' => $place->comments,
+            ));
+        }
+        return $result;
+    }
 }

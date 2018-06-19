@@ -4,49 +4,60 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'The GEEK') }}</title>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('css/Default/library/fullcalendar.print.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/Default/library/fullcalendar.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/Default/main.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/Newspaper/main.css') }}" />
+    <!-- Scripts -->
+    <script src="{{ URL::asset('js/library/moment.min.js') }}"></script>
+    <script src="{{ URL::asset('js/jquery/jquery-3.3.1.js') }}"></script>
+    <script src="{{ URL::asset('js/jquery/jquery.easing.min.js') }}"></script>
+    <script src="{{ URL::asset('js/library/fullcalendar.min.js') }}"></script>
+    {{--<script src="{{ URL::asset('js/app.js') }}"></script>--}}
+    <script src="{{ URL::asset('js/main.js') }}"></script>
 </head>
 <body>
 <header>
     <nav>
         <div class="search-container">
             <label class="search">
-                <input type="text" id="search" name="search" placeholder="Поиск">
-                <img src="images/icons/search.png">
+                <form type="GET" action="{{ route('search') }}">
+                    <input type="text" id="search" name="search" placeholder="Поиск">
+                    <img id="search-send" src="{{ url("/images/icons/search.png") }}">
+                </form>
             </label>
         </div>
         <div class="user-menu">
             <div class="header-menu">
                 <div class="header-menu-item">
-                    <img src="images/icons/friends.png">
+                    <img src="{{ url("/images/icons/friends.png") }}">
                 </div>
                 <div class="header-menu-item">
-                    <img src="images/icons/message.png">
+                    <img src="{{ url("/images/icons/message.png") }}">
                 </div>
                 <div class="header-menu-item">
-                    <img src="images/icons/photo.png">
+                    <img src="{{ url("/images/icons/photo.png") }}">
                 </div>
                 <div class="header-menu-item">
-                    <img src="images/icons/place.png">
+                    <img src="{{ url("/images/icons/place.png") }}">
                 </div>
                 <div class="header-menu-item">
-                    <img src="images/icons/event_new.png">
+                    <img src="{{ url("/images/icons/event_new.png") }}">
                 </div>
             </div>
             <div class="user-activity">
                 @guest
                     <a class="open-modal" data-modal="#login" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    <img src="images/icons/enter.png">
+                    <img src="{{ url("/images/icons/enter.png") }}">
                 @else
-                    <a href="{{ url('/user/' . $user->id) }}">
-                        <p>Имя Пользователя</p>
-                        <img class="header-user-photo" src="images/default-user-image.png">
+                    <a href="{{ url('/user/' . $user->id) }}" class="user-activated">
+                        <p>{{ $user->name . ' ' . $user->surname }}</p>
+                        <img class="header-user-photo" src="{{ url($user->getMainImage()->path) }}">
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -68,17 +79,17 @@
             <a href="#">О нас</a>
         </div>
         <div class="header-title">
-            <h1>The Geek</h1>
+            <h1>{{ config('app.name', 'The Geek') }}</h1>
         </div>
         <div class="header-time">
             <h2><span class="time">26 мая 2018 г.</span></h2>
-            <a>События сегодня <img src="images/icons/events_today.png"></a>
+            <a>События сегодня <img src="{{ url("/images/icons/events_today.png") }}"></a>
         </div>
     </div>
 </header>
 @yield("content")
 @include('auth.login')
-<script src="{{ URL::asset('js/jquery/jquery-3.3.1.js') }}"></script>
-<script src="{{ URL::asset('js/main.js') }}"></script>
+@include('auth.register.index')
+@include('auth.passwords.reset')
 </body>
 </html>

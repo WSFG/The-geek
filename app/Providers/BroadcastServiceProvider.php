@@ -16,6 +16,12 @@ class BroadcastServiceProvider extends ServiceProvider
     {
         Broadcast::routes();
 
+        Broadcast::channel('chat-room.*', function ($user, $chatroomId) {
+            if ($user) { // Заменить настоящими правилами ACL
+                return true;
+            }
+        });
+
         require base_path('routes/channels.php');
     }
 }
