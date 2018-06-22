@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use App\News;
 use App\User;
 use Illuminate\Http\Request;
@@ -37,10 +38,11 @@ class HomeController extends Controller
     public function start()
     {
         $news = News::getNews();
+        $articles = Article::getArticlesByType(Article::Recommendation);
         if (Auth::check()) {
-            return view('welcome', ['user' => Auth::user(), 'news' => $news]);
+            return view('welcome', ['user' => Auth::user(), 'news' => $news, 'articles' => $articles]);
         } else {
-            return view('welcome', ['news' => $news]);
+            return view('welcome', ['news' => $news, 'articles' => $articles]);
         }
     }
 

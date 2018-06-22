@@ -23,11 +23,17 @@ Route::get('/user/{id}', 'UserController@profile');
 Route::get('news/{id}', 'NewsController@index');
 Route::post('news/add-comment', 'NewsController@addComment');
 
-/*News routers*/
+/*Events routers*/
 Route::get('events', 'EventsController@index')->name('events');
+Route::get('event/{id}', 'EventsController@showEvent');
 
 /*Places routes*/
+Route::get('places', 'PlaceController@index')->name('places');
 Route::get('place/{id}', 'PlaceController@showPlace');
+
+/*Places routes*/
+Route::get('articles', 'ArticleController@index')->name('article');
+Route::get('article/{id}', 'ArticleController@showPlace');
 
 /*Admin routes*/
 Route::get('/admin', 'AdminController@index')->name('adminDashboard');
@@ -39,9 +45,19 @@ Route::get('/admin/news/edit/{id}', 'AdminController@newsEdit');
 Route::post('/admin/news/edit/{id}', 'AdminController@newsEditPost')->name('newsEdit');
 Route::get('/admin/news/remove/{id}', 'AdminController@newsRemove');
 /*Articles*/
-Route::get('/admin/articles', 'AdminController@news')->name('adminArticles');
+Route::get('/admin/articles', 'AdminController@articles')->name('adminArticles');
+Route::get('/admin/article/create', 'AdminController@articleCreate')->name('articleCreateGet');
+Route::post('/admin/article/create', 'AdminController@articleCreatePost')->name('articleCreate');
+Route::get('/admin/article/edit/{id}', 'AdminController@articleEdit');
+Route::post('/admin/article/edit/{id}', 'AdminController@articleEditPost')->name('articleEdit');
+Route::get('/admin/article/remove/{id}', 'AdminController@articleRemove');
 /*Events*/
-Route::get('/admin/events', 'AdminController@news')->name('adminEvents');
+Route::get('/admin/events', 'AdminController@events')->name('adminEvents');
+Route::get('/admin/event/create', 'AdminController@eventCreate')->name('eventCreateGet');
+Route::post('/admin/event/create', 'AdminController@eventCreatePost')->name('eventCreate');
+Route::get('/admin/event/edit/{id}', 'AdminController@eventEdit');
+Route::post('/admin/event/edit/{id}', 'AdminController@eventEditPost')->name('eventEdit');
+Route::get('/admin/event/remove/{id}', 'AdminController@eventRemove');
 /*Places*/
 Route::get('/admin/places', 'AdminController@places')->name('adminPlaces');
 Route::get('/admin/place/create', 'AdminController@placeCreate')->name('placeCreateGet');

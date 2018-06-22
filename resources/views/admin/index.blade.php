@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>{{ config('app.name', 'The GEEK') }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,6 +21,7 @@
     <script src="{{ URL::asset('js/library/dx.chartjs.js') }}"></script>
     <script src="{{ URL::asset('js/library/loader.js') }}"></script>
     <script src="{{ URL::asset('js/main.js') }}"></script>
+    <script src="{{ URL::asset('js/admin.js') }}"></script>
 </head>
 <body>
 <header>

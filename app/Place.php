@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Place extends Model
 {
@@ -10,7 +11,7 @@ class Place extends Model
     public $table = 'place';
 
     protected $fillable = [
-        'id', 'name', 'description', 'text', 'phone', 'working_time', 'address', 'latitude', 'longitude', 'type_of_pace_id',
+        'id', 'name', 'description', 'text', 'phone', 'working_time', 'address', 'latitude', 'longitude', 'type_of_pace_id', 'image_id',
     ];
 
     public static function findById($id)
@@ -18,19 +19,19 @@ class Place extends Model
         return Place::find($id);
     }
 
-    public function placeType()
+    public static function types()
     {
-        return $this->hasOne('PlaceType', 'type_of_pace_id');
+        return DB::table('type_of_place')->get();
     }
 
-    public function images()
+    public function placeType()
     {
-        return $this->belongsToMany('App\Image', 'news_to_image')->withPivot('is_main');
+        return DB::table('type_of_place')->where('id', '=', $this->type_of_pace_id)->get();
     }
 
     public function getMainImage()
     {
-        return $this->images()->wherePivot('is_main', '=', true);
+        return Image::find($this->image_id);
     }
 
     public function users()

@@ -14,6 +14,11 @@ class User extends Authenticatable
 {
     use Notifiable, Searchable;
 
+    public const User = 1;
+    public const Editor = 2;
+    public const Moderator = 3;
+    public const Admin = 4;
+
     /**
      * The attributes that are mass assignable.
      *

@@ -24,7 +24,7 @@ class UserTableSeeder extends Seeder
             'password' => bcrypt('1803y2607a'),
             'email_token' => base64_encode('kolesnikov.roma.1999@mail.ru'),
             'last_login' => \Carbon\Carbon::now(),
-            'type_of_user_id' => 2,
+            'type_of_user_id' => 4,
             'user_info_id' => 1,
         ]);
 

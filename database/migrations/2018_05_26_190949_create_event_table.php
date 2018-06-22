@@ -20,6 +20,8 @@ class CreateEventTable extends Migration
             $table->text('text');
             $table->dateTime('date_of_start');
             $table->dateTime('date_of_end');
+            $table->bigInteger('image_id')->unsigned()->nullable();
+            $table->foreign('image_id')->references('id')->on('image')->onDelete('cascade');
             $table->timestamps();
         });
     }

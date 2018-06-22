@@ -5,7 +5,7 @@
     <div id="grid"></div>
     <script>
         $(document).ready(function () {
-            $.ajax("{{ url('/api/places') }}", {
+            $.ajax("{{ url('/api/articles') }}", {
                 complete: function (data) {
                     $("#grid").kendoGrid({
                         dataSource: {
@@ -19,7 +19,7 @@
                         },
                         height: 550,
                         sortable: true,
-                        toolbar: kendo.template('<div class="k-header k-grid-toolbar"><a role="button" class="k-button k-button-icontext k-grid-add" href="{{ url("admin/place/create") }}"><span class="k-icon k-i-plus"></span>Добавить место</a></div>'),
+                        toolbar: kendo.template('<div class="k-header k-grid-toolbar"><a role="button" class="k-button k-button-icontext k-grid-add" href="{{ url("admin/article/create") }}"><span class="k-icon k-i-plus"></span>Добавить запись</a></div>'),
                         pageable: {
                             refresh: true,
                             pageSizes: true,
@@ -48,27 +48,22 @@
                                 ui: descriptionFilter
                             }
                         }, {
-                            field: "phone",
-                            title: "Телефон",
-                            filterable: false
-                        }, {
-                            field: "working_time",
-                            title: "Время работы",
-                            filterable: false
-                        }, {
-                            field: "address",
-                            title: "Адрес",
-                            filterable: false
-                        }, {
+                                field: "type",
+                                title: "Тип",
+                                filterable: false,
+                                template: function(dataItem) {
+                                    return dataItem.type.type;
+                                }
+                            }, {
                                 field: 'edit',
                                 title: ' ',
                                 filterable: false,
                                 template: '<a role="button" class="k-button k-button-icontext k-grid-edit" ' +
-                                'href="{{ url("admin/place/edit") }}/#=id#">' +
+                                'href="{{ url("admin/article/edit") }}/#=id#">' +
                                 '<span class="k-icon k-i-edit"></span>' +
                                 'Редактировать</a>' +
                                 ' <a role="button" onclick="$.ajax($(this).attr(\'href\'));" class="k-button k-button-icontext k-grid-delete"' +
-                                'href="{{ url("admin/place/remove") }}/#=id#">' +
+                                'href="{{ url("admin/article/remove") }}/#=id#">' +
                                 '<span class="k-icon k-i-close"></span>' +
                                 'Удалить</a>'
                             }],
@@ -115,6 +110,6 @@
 </style>
     <script>
         $(".active").removeClass("active");
-        $("#places, #records").addClass("active");
+        $("#articles, #records").addClass("active");
     </script>
 @endsection

@@ -35,28 +35,30 @@
                 </li>
                 <li>
                     <label for="address">Адрес</label>
-                    <input name="address" id="address" type="text" class="k-textbox" style="width: 100%;" value="{{ old('address') || $place ? $place->address : "" }}" />
+                    <input name="address" id="address" type="text" class="controls" placeholder="" value="{{ old('address') || $place ? $place->address : "" }}" />
+                    <input type="hidden" id="latitude" name="latitude" value="{{ old('latitude') || $place ? $place->latitude : "" }}">
+                    <input type="hidden" id="longitude" name="longitude" value="{{ old('longitude') || $place ? $place->longitude : "" }}">
                     <div id="form_map"></div>
                 </li>
-                {{--<li>--}}
-                    {{--<label for="writers">Авторы</label>--}}
-                    {{--<select name="writers[]" id="writers" multiple="multiple" data-placeholder="Выберите вселенные...">--}}
-                        {{--@foreach($writers as $writer)--}}
-                            {{--{{ $flag = true }}--}}
-                            {{--@if(count($newsWriters))--}}
-                                {{--@foreach($newsWriters as $newsWriter)--}}
-                                    {{--@if ($writer->id === $newsWriter->id)--}}
-                                        {{--<option selected value="{{ $writer->id }}">{{ $writer->name . " " . $writer->surname }}</option>--}}
-                                        {{--{{ $flag = false }}--}}
-                                    {{--@endif--}}
-                                {{--@endforeach--}}
-                            {{--@endif--}}
-                            {{--@if ($flag)--}}
-                                {{--<option value="{{ $writer->id }}">{{ $writer->name . " " . $writer->surname }}</option>--}}
-                            {{--@endif--}}
-                        {{--@endforeach--}}
-                    {{--</select>--}}
-                {{--</li>--}}
+                <li>
+                    <label for="type">Тип места</label>
+                    <select name="type" id="type" data-placeholder="Выберите тип места...">
+                        @foreach($types as $type)
+                            {{ $flag = true }}
+                            @if(count($placeTypes))
+                                @foreach($placeTypes as $placeType)
+                                    @if ($type->id === $placeType->id)
+                                        <option selected value="{{ $type->id }}">{{ $type->type }}</option>
+                                        {{ $flag = false }}
+                                    @endif
+                                @endforeach
+                            @endif
+                            @if ($flag)
+                                <option value="{{ $type->id }}">{{ $type->type }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </li>
                 <li>
                     <button id="news-send" type="submit" class="k-button k-primary">Отправить</button>
                 </li>
@@ -87,16 +89,119 @@
     </div>
     <script>
         $(".active").removeClass("active");
-        $("#news").addClass('.active');
+        $("#places").addClass('.active');
         $("#records").click();
+        var coordinates;
     </script>
+    @if(old('latitude'))
+        <script>
+            coordinates = {
+                lat: {{ old('latitude') }},
+                lng: {{ old('longitude') }}
+            };
+        </script>
+    @elseif($place)
+        <script>
+            coordinates = {
+                lat: {{ $place->latitude }},
+                lng: {{ $place->longitude }}
+            };
+        </script>
+    @endif
     <script>
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('form_map'), {
-                center: {lat: 53.9045398, lng: 27.5615244},
-                zoom: 11
-            });
+        $("#type").kendoDropDownList();
+        function initAutocomplete() {
+            var myLatLng = {};
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    myLatLng = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    createMap();
+                });
+            } else {
+                if (coordinates) {
+                    myLatLng = coordinates;
+                    createMap();
+                } else {
+                    myLatLng = {lat: -33.8688, lng: 151.2195};
+                    createMap();
+                }
+            }
+            function createMap() {
+                var map = new google.maps.Map(document.getElementById('form_map'), {
+                    center: myLatLng,
+                    zoom: 13,
+                    mapTypeId: 'roadmap'
+                });
+
+                if (coordinates) {
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(coordinates.lat, coordinates.lng),
+                        map: map
+                    });
+                }
+
+                var input = document.getElementById('address');
+                var searchBox = new google.maps.places.SearchBox(input);
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                map.addListener('bounds_changed', function() {
+                    searchBox.setBounds(map.getBounds());
+                });
+
+                var markers = [];
+
+                searchBox.addListener('places_changed', function() {
+                    var places = searchBox.getPlaces();
+
+                    if (places.length == 0) {
+                        return;
+                    }
+
+                    if (marker) {
+                        marker.setMap(null);
+                    }
+
+                    markers.forEach(function(marker) {
+                        marker.setMap(null);
+                    });
+                    markers = [];
+
+                    var bounds = new google.maps.LatLngBounds();
+                    places.forEach(function(place) {
+                        if (!place.geometry) {
+                            return;
+                        }
+                        var icon = {
+                            url: place.icon,
+                            size: new google.maps.Size(71, 71),
+                            origin: new google.maps.Point(0, 0),
+                            anchor: new google.maps.Point(17, 34),
+                            scaledSize: new google.maps.Size(25, 25)
+                        };
+
+                        markers.push(new google.maps.Marker({
+                            map: map,
+                            icon: icon,
+                            title: place.name,
+                            position: place.geometry.location
+                        }));
+
+                        $("#latitude").val(place.geometry.location.lat());
+                        $("#longitude").val(place.geometry.location.lng());
+
+                        if (place.geometry.viewport) {
+                            bounds.union(place.geometry.viewport);
+                        } else {
+                            bounds.extend(place.geometry.location);
+                        }
+                    });
+                    map.fitBounds(bounds);
+                });
+            }
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6GAYtX1exgaQJjqS6y8HOvuK4--aIuRI&callback=initMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6GAYtX1exgaQJjqS6y8HOvuK4--aIuRI&libraries=places&callback=initAutocomplete"></script>
 @endsection

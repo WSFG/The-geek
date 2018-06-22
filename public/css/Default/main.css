@@ -1278,4 +1278,48 @@ aside hr{
   text-align: center;
 }
 /*End register form*/
+/*Places*/
+#map {
+  height: 500px;
+}
 
+.list-places {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.item-place {
+  display: flex;
+  flex-wrap: wrap;
+  width: 95%;
+  padding: 20px 0;
+  border-bottom: 1px solid black;
+}
+
+.item-place .place-image {
+  width: 30%;
+  margin-right: 50px;
+}
+
+.place-image img {
+  width: 100%;
+}
+
+.item-place .place-text {
+  display: inline-block;
+  width: 60%;
+}
+
+.item-place .likes {
+  width: 100%;
+}
+
+.item-place>a {
+  display: flex;
+}
+
+.item-place .place-text {
+  margin: 20px 0;
+}
+/*End places*/

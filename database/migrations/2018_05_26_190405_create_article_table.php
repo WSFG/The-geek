@@ -18,7 +18,10 @@ class CreateArticleTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->text('text');
-            $table->integer('rating')->default(0);
+            $table->bigInteger('image_id')->unsigned()->nullable();
+            $table->foreign('image_id')->references('id')->on('image')->onDelete('cascade');
+            $table->bigInteger('type_id')->unsigned()->nullable();
+            $table->foreign('type_id')->references('id')->on('article_type')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ActivityTableSeeder::class);
         $this->call(NewsToUserTable::class);
         $this->call(UserStatisticTable::class);
-//        $this->call(TypeOfPlaceTableSeeder::class);
+        $this->call(TypeOfPlaceTableSeeder::class);
+        $this->call(ArticleTypeTable::class);
 //        $this->call(PlaceTableSeeder::class);
     }
 }

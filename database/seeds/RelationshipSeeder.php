@@ -21,5 +21,11 @@ class RelationshipSeeder extends Seeder
         DB::table('relationship')->insert([
             'relationship' => 'Dislike',
         ]);
+        DB::table('relationship')->insert([
+            'relationship' => 'visit',
+        ]);
+        DB::table('relationship')->insert([
+            'relationship' => 'watch',
+        ]);
     }
 }

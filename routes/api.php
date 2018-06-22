@@ -32,6 +32,21 @@ Route::get('places', [
     'uses' => 'PlaceController@getAllPlaces'
 ]);
 
+Route::get('place/{id}', [
+    'as' => 'api.admin.place',
+    'uses' => 'PlaceController@getPlace'
+]);
+
+Route::get('events', [
+    'as' => 'api.admin.events',
+    'uses' => 'EventsController@getAllEvents'
+]);
+
+Route::get('articles', [
+    'as' => 'api.admin.articles',
+    'uses' => 'ArticleController@getAllArticles'
+]);
+
 Route::get('statistic/users/count', [
     'as' => 'api.admin.statistic',
     'uses' => 'AdminController@countUserStatistic'

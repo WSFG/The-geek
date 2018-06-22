@@ -9,14 +9,13 @@
     <title>{{ config('app.name', 'The GEEK') }}</title>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('css/Default/library/fullcalendar.print.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/Default/library/fullcalendar.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/Default/main.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/Newspaper/main.css') }}" />
     <!-- Scripts -->
-    <script src="{{ URL::asset('js/library/moment.min.js') }}"></script>
     <script src="{{ URL::asset('js/jquery/jquery-3.3.1.js') }}"></script>
     <script src="{{ URL::asset('js/jquery/jquery.easing.min.js') }}"></script>
+    <script src="{{ URL::asset('js/library/moment.min.js') }}"></script>
     <script src="{{ URL::asset('js/library/fullcalendar.min.js') }}"></script>
     {{--<script src="{{ URL::asset('js/app.js') }}"></script>--}}
     <script src="{{ URL::asset('js/main.js') }}"></script>
@@ -33,26 +32,28 @@
             </label>
         </div>
         <div class="user-menu">
-            <div class="header-menu">
-                <div class="header-menu-item">
-                    <img src="{{ url("/images/icons/friends.png") }}">
+            @auth
+                <div class="header-menu">
+                    <div class="header-menu-item">
+                        <img src="{{ url("/images/icons/friends.png") }}">
+                    </div>
+                    <div class="header-menu-item">
+                        <img src="{{ url("/images/icons/message.png") }}">
+                    </div>
+                    <div class="header-menu-item">
+                        <img src="{{ url("/images/icons/photo.png") }}">
+                    </div>
+                    <div class="header-menu-item">
+                        <img src="{{ url("/images/icons/place.png") }}">
+                    </div>
+                    <div class="header-menu-item">
+                        <img src="{{ url("/images/icons/event_new.png") }}">
+                    </div>
                 </div>
-                <div class="header-menu-item">
-                    <img src="{{ url("/images/icons/message.png") }}">
-                </div>
-                <div class="header-menu-item">
-                    <img src="{{ url("/images/icons/photo.png") }}">
-                </div>
-                <div class="header-menu-item">
-                    <img src="{{ url("/images/icons/place.png") }}">
-                </div>
-                <div class="header-menu-item">
-                    <img src="{{ url("/images/icons/event_new.png") }}">
-                </div>
-            </div>
+            @endauth
             <div class="user-activity">
                 @guest
-                    <a class="open-modal" data-modal="#login" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a class="open-modal" data-modal="#login" href="{{ route('login') }}">Вход</a>
                     <img src="{{ url("/images/icons/enter.png") }}">
                 @else
                     <a href="{{ url('/user/' . $user->id) }}" class="user-activated">
@@ -66,7 +67,7 @@
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
+                            Выход
                         </a>
                     </ul>
                 @endguest

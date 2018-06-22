@@ -23,30 +23,14 @@
         </fieldset>
         <section class="right-main-section">
             <h2>РЕКОМЕНДАЦИИ</h2>
-            <article class="right-main-item">
-                <img src="img/aTMv9MI0j8U-380x215.jpg">
-                <h5>Что посмотреть?</h5>
-            </article>
-            <article class="right-main-item">
-                <img src="img/aTMv9MI0j8U-380x215.jpg">
-                <h5>Что посмотреть?</h5>
-            </article>
-            <article class="right-main-item">
-                <img src="img/aTMv9MI0j8U-380x215.jpg">
-                <h5>Что посмотреть?</h5>
-            </article>
-            <article class="right-main-item">
-                <img src="img/aTMv9MI0j8U-380x215.jpg">
-                <h5>Что посмотреть?</h5>
-            </article>
-            <article class="right-main-item">
-                <img src="img/aTMv9MI0j8U-380x215.jpg">
-                <h5>Что посмотреть?</h5>
-            </article>
-            <article class="right-main-item">
-                <img src="img/aTMv9MI0j8U-380x215.jpg">
-                <h5>Что посмотреть?</h5>
-            </article>
+            @foreach($articles as $article)
+                <a href="{{ url('article/' . $article->id) }}">
+                    <article class="right-main-item">
+                        <img src="{{ url($article->getMainImage()->path) }}">
+                        <h5>{{ $article->name }}</h5>
+                    </article>
+                </a>
+            @endforeach
         </section>
     </section>
 </main>
