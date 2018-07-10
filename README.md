@@ -14,3 +14,6 @@ DB_PASSWORD=ПАРОЛЬ
 
 Для запуска:
 php artisan serve
+
+Требования:
+PHP 7.0 и выше
