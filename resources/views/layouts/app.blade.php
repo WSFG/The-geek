@@ -5,19 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="userId" content="{{ Auth::check() ? Auth::user()->id : 'null' }}">
 
     <title>{{ config('app.name', 'The GEEK') }}</title>
 
     <!-- Styles -->
+{{--    <link rel="stylesheet" href="{{ asset('css/app.css') }}" />--}}
     <link rel="stylesheet" href="{{ asset('css/Default/library/fullcalendar.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/Default/main.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/Default/mobile.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/Newspaper/main.css') }}" />
     <!-- Scripts -->
     <script src="{{ URL::asset('js/jquery/jquery-3.3.1.js') }}"></script>
     <script src="{{ URL::asset('js/jquery/jquery.easing.min.js') }}"></script>
+    <script src="{{ URL::asset('js/library/jquery.mobile-events.js') }}"></script>
     <script src="{{ URL::asset('js/library/moment.min.js') }}"></script>
     <script src="{{ URL::asset('js/library/fullcalendar.min.js') }}"></script>
-    {{--<script src="{{ URL::asset('js/app.js') }}"></script>--}}
     <script src="{{ URL::asset('js/main.js') }}"></script>
 </head>
 <body>
@@ -56,9 +59,9 @@
                     <a class="open-modal" data-modal="#login" href="{{ route('login') }}">Вход</a>
                     <img src="{{ url("/images/icons/enter.png") }}">
                 @else
-                    <a href="{{ url('/user/' . $user->id) }}" class="user-activated">
-                        <p>{{ $user->name . ' ' . $user->surname }}</p>
-                        <img class="header-user-photo" src="{{ url($user->getMainImage()->path) }}">
+                    <a href="{{ url('/user/' . Auth::user()->id) }}" class="user-activated">
+                        <p>{{ Auth::user()->name . ' ' . Auth::user()->surname }}</p>
+                        <img class="header-user-photo" src="{{ url(Auth::user()->getMainImage()->path) }}">
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -74,6 +77,11 @@
             </div>
         </div>
     </nav>
+    <div class="mobile mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
     <div class="header">
         <div class="header-description">
             <h2>Интернет-площадка о современной культуре и развлечениях</h2>
@@ -88,9 +96,12 @@
         </div>
     </div>
 </header>
-@yield("content")
-@include('auth.login')
-@include('auth.register.index')
-@include('auth.passwords.reset')
+<div id="app">
+    @yield("content")
+    @include('auth.login')
+    @include('auth.register.index')
+    @include('auth.passwords.reset')
+</div>
+<script src="{{ URL::asset('js/app.js') }}"></script>
 </body>
 </html>

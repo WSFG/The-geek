@@ -15,7 +15,11 @@ class CreateDialogsTable extends Migration
     {
         Schema::create('dialogs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('public')->unique();
+            $table->string('chat');
+            $table->bigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->bigInteger('friend_id');
+            $table->foreign('friend_id')->references('id')->on('users');
         });
     }
 

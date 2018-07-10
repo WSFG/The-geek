@@ -21,7 +21,9 @@
             @include('comments')
         </section>
     </main>
-    <input type="hidden" name="news_id" id="news_id" value="{{ $user->id }}">
+    @auth
+        <input type="hidden" name="news_id" id="news_id" value="{{ Auth::user()->id }}">
+    @endauth
     <script>
         $(".send-comment").addClass("send-news-comment");
     </script>

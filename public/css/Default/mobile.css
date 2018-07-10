@@ -1,0 +1,126 @@
+@media screen and (max-width: 980px) {
+
+}
+
+@media screen and (max-width: 650px) {
+    main {
+        flex-wrap: nowrap;
+        width: 90vw;
+    }
+
+    nav,
+    .header-description,
+    .header-time {
+        display: none;
+    }
+
+    .mobile-menu {
+        position: absolute;
+        top: 40px;
+    }
+
+    .mobile-menu span {
+        display: block;
+        width: 30px;
+        height: 1px;
+        border: 1px solid #333030;
+        border-radius: 20px;
+        background-color: #333030;
+        margin: 7px 0;
+    }
+
+    header {
+        width: 90vw;
+    }
+
+    .header {
+        border-top: none;
+        height: auto;
+    }
+
+    .header-title {
+        border: none;
+        width: 100%;
+    }
+
+    header h1 {
+        font-size: 60px;
+        line-height: 1;
+    }
+
+    aside {
+        background-image: url("../../images/Texture-271.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 90vw;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -90vw;
+        z-index: 100000;
+        transition: all 200ms linear;
+        padding: 20px 0;
+    }
+
+    aside ul li,
+    .user-menu-mobile,
+    .mobile-logout {
+        width: 85%;
+        margin: 0 auto;
+    }
+
+    aside hr {
+        width: 80%;
+    }
+
+    .header-user-photo {
+        margin-left: 10px;
+    }
+
+    aside.active {
+        left: 0;
+    }
+
+    .content {
+        flex-wrap: wrap;
+    }
+
+    fieldset {
+        border: none;
+    }
+
+    .main-news-item {
+        width: 80%;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .news_page {
+        padding: 0;
+    }
+
+    .main_news_information {
+        flex-wrap: wrap;
+    }
+
+    .news_page img {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .news_page figure {
+        flex-wrap: wrap;
+    }
+
+    .news_page figure img {
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .comments button {
+        width: auto;
+        padding: 0 10px;
+    }
+}

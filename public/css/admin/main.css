@@ -1,7 +1,20 @@
+@font-face {
+    font-family: TrixieCyr-Plain;
+    src: url("../../fonts/TrixieCyr-Plain.ttf");
+}
+
 * {
     margin: 0;
     padding: 0;
+    font-family: TrixieCyr-Plain;
 }
+
+body {
+    background-image: url("../../images/Texture-27.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 header {
     height: 50px;
 }
@@ -13,6 +26,7 @@ nav, .user-activity {
 nav {
     display: flex;
     justify-content: flex-end;
+    margin: 0 40px;
 }
 
 .user-activity {
@@ -69,7 +83,7 @@ aside {
     position: absolute;
     height: 100%;
     width: 15%;
-    background-color: #93cbff;
+    background-color: #C1AA7E;
     -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
@@ -81,7 +95,7 @@ aside ul {
 }
 aside ul li a {
     display: block;
-    background: #3498db;
+    background: #554832;
     padding: 20px 15px;
     color: #fff;
     text-decoration: none;
@@ -92,7 +106,7 @@ aside ul li a {
     transition: 0.2s linear;
 }
 aside ul li a:hover, aside ul li.active a {
-    background: #2980b9;
+    background: #2E281C;
 }
 aside ul li a .fa {
     width: 16px;
@@ -100,7 +114,7 @@ aside ul li a .fa {
     margin-right: 5px;
 }
 aside>ul>li>a {
-    border-bottom: 1px solid #93cbff;
+    border-bottom: 1px solid #C1AA7E;
 }
 aside>ul li:last-of-type a {
     border: none;
@@ -112,7 +126,7 @@ aside ul li ul li a {
 }
 aside ul li ul li a:hover, aside ul li ul li.active a {
     background: #333;
-    border-left: 4px solid #3498db;
+    border-left: 4px solid #554832;
 }
 .right {
     float: right;

@@ -157,12 +157,12 @@ class User extends Authenticatable
         return $this->hasMany('App\Activity', 'user_id');
     }
 
-    public function friends($id)
+    public function friends()
     {
         $users1Id = DB::table('friend')->where('type_id', '=', '3')
-            ->where('user_1_id', '=', $id)->get();
+            ->where('user_1_id', '=', $this->id)->get();
         $users2Id = DB::table('friend')->where('type_id', '=', '3')
-            ->where('user_2_id', '=', $id)->get();
+            ->where('user_2_id', '=', $this->id)->get();
         $friend = [];
         foreach ($users1Id as $userId) {
             array_push($friend, User::findById($userId->user_2_id));

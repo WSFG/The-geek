@@ -6,6 +6,13 @@
   font-family: Nocturne-Victorian;
   src: url("../../fonts/Nocturne-Victorian.ttf");
 }
+
+@media screen and (min-width: 980px) {
+  .mobile {
+    display: none;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -18,10 +25,12 @@
 body{
   background-image: url("../../images/Texture-271.jpg") ;
   background-size: cover;
+  position: relative;
 }
 
 a {
   text-decoration: none;
+  color: #333030;
 }
 
 a:hover{
@@ -58,7 +67,6 @@ nav img{
   align-items: center;
   width: 30%;
 }
-
 
 .user-menu {
   display: flex;
@@ -219,7 +227,7 @@ aside ul li {
   display: flex;
   align-items: center;
   margin: 0 auto;
-  width: 70%;
+  width: 75%;
   height: 60px;
 }
 
@@ -1233,7 +1241,7 @@ aside hr{
 
 #progressbar li {
   list-style-type: none;
-  color: #fff;
+  color: #000;
   text-transform: uppercase;
   font-size: 9px;
   width: calc(100% / 4);
@@ -1323,3 +1331,21 @@ aside hr{
   margin: 20px 0;
 }
 /*End places*/
+
+/*Dialogs*/
+.message-user {
+  display: flex;
+  align-items: center;
+  height: 100px;
+}
+
+.message-user-image {
+  height: 100%;
+}
+
+.message-user-image img {
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+}
+/*End dialogs*/

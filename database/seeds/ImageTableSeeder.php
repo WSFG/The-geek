@@ -33,5 +33,9 @@ class ImageTableSeeder extends Seeder
         DB::table('image')->insert([
             'path' => 'thumb/users/1/rBQ9htheiRQ.jpg',
         ]);
+
+        DB::table('image')->insert([
+            'path' => 'thumb/users/2/1528040559_P1400189.RW2.jpg',
+        ]);
     }
 }

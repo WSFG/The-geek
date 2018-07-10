@@ -193,4 +193,25 @@ $(document).ready(function () {
     $("#search-send").on('click', function () {
         $(this).parent().submit();
     });
+
+    //mobile
+    $('.mobile-menu').on('click', function () {
+        if ($('aside').hasClass('active')) {
+            $('aside').removeClass('active');
+        } else {
+            $('aside').addClass('active');
+        }
+    });
+
+    // $('body').swiperight(function () {
+    //     if (!$('aside').hasClass('active')) {
+    //         $('aside').addClass('active');
+    //     }
+    // });
+    //
+    // $('body').swipeleft(function () {
+    //     if ($('aside').hasClass('active')) {
+    //         $('aside').removeClass('active');
+    //     }
+    // });
 });

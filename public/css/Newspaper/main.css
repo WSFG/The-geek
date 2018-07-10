@@ -43,7 +43,29 @@
 
 /*End place page*/
 
+/*Modal form*/
+.overlay .modal.open {
+  background-image: url("../../images/Texture-27.jpg");
+}
 
+#email,
+#password,
+#password-confirm {
+  display: block;
+  border: 1px solid black;
+  box-sizing: border-box;
+  height: 28px;
+  line-height: 16px;
+  width: 50%;
+  margin: 0 auto;
+  background-image: url("../../images/Texture-271.jpg");
+  color: #000000;
+}
+
+.modal.open .btn {
+  padding: 5px 40px;
+}
+/*End modal form*/
 
 /*
 WRITE UNDER THIS COMMENT

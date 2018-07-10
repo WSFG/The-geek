@@ -35,6 +35,12 @@ Route::get('place/{id}', 'PlaceController@showPlace');
 Route::get('articles', 'ArticleController@index')->name('article');
 Route::get('article/{id}', 'ArticleController@showPlace');
 
+/*Chats routes*/
+Route::get('/chats', 'ChatController@index')->middleware('auth')->name('chat.index');
+Route::get('/chat/{id}', 'ChatController@show')->middleware('auth')->name('chat.show');
+Route::post('/chat/getChat/{id}', 'ChatController@getChat')->middleware('auth');
+Route::post('/chat/sendChat', 'ChatController@sendChat')->middleware('auth');
+
 /*Admin routes*/
 Route::get('/admin', 'AdminController@index')->name('adminDashboard');
 /*News*/
