@@ -11,3 +11,6 @@ DB_PASSWORD=ПАРОЛЬ
 4. php artisan migrate
 5. php artisan db:seed
 6. php artisan schedule:run >>/nul 2>&1
+
+Для запуска:
+php artisan serve
